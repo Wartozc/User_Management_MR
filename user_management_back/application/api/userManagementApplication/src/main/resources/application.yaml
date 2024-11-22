@@ -1,0 +1,42 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  webflux:
+    base-path: ${BASE_PATH:/api/v1/user-management}
+  application:
+    name: ${APPLICATION_NAME:UserMangement}
+  profiles:
+    include: ${ENV:local}
+
+springdoc:
+  swagger-ui:
+    path: "/doc/swagger-ui/index.html"
+  api-docs:
+    path: "doc/api-docs"
+
+logging:
+  level:
+    root: ${LOG_LEVEL:info}
+
+management:
+  endpoints:
+    web:
+      base_path: /
+      exposure:
+        include: "health"
+  endpoint:
+    health:
+      probes:
+        enable: true
+
+user-router:
+  routes:
+    create: "/user"
+    update: "/user/{id}"
+    delete: "/user/{id}"
+    list: "/users"
+app:
+  adapters:
+    dynamodb:
+      table-name: ${TABLE_NAME:user_table}

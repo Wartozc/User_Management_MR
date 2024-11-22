@@ -1,0 +1,14 @@
+rootProject.name = 'user_management_back'
+include ':userManagementApplication'
+include ':reactive-web'
+include ':model'
+include ':usecase'
+include ':dynamodb'
+
+project(':reactive-web').projectDir = file('./infrastructure/entry-points/reactive-web')
+project(':model').projectDir = file('./domain/model')
+project(':usecase').projectDir = file('./domain/usecase')
+project(':dynamodb').projectDir = file('./infrastructure/driven-adapters/dynamodb')
+project(':userManagementApplication').projectDir = file('./application/api/userManagementApplication')
+
+
